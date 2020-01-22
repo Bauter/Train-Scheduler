@@ -4,6 +4,7 @@
     margin-bottom: 5%;
     text-align: center;
     position: relative;
+    background-color:orange;
     
     
 }
@@ -18,14 +19,14 @@
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 5%;
-    border: aqua solid 2px;
+    border: orange solid 2px;
 }
 
 #add-train-div {
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 5%;
-    border: aqua solid 2px;
+    border:orange solid 2px;
 }
 
 form {
@@ -33,9 +34,6 @@ form {
     margin-right: 2%;
 }
 
-#submit {
-    margin-bottom:2%;
-}
 
 #add-train-header {
     margin-bottom: 2%;
@@ -48,6 +46,17 @@ label {
 .card-header {
     font-size: large;
     font-weight: bolder;
-    background-color: aqua;
+    background-color:orange;
     
+}
+
+#submit-btn {
+    background-color: orange;
+    margin-bottom: 2%;
+    color: black
+}
+
+#submit-btn:hover {
+    transform: translateY(-2px);
+    transition: transform 150ms;
 }

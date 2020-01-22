@@ -11,6 +11,7 @@
         <!--Styling-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/style.css"></link>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
         <!--Javascript-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> <!--May need to create "library/" dir. in "assets/" dir and download moment.js library into "moment.js.library" file inside "library/" dir. if CDN is problematic. -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -27,7 +28,7 @@
 
         <div class="card" id="table-div">
             <div class="card-header" id="current-train-header">
-              Current Train Schedule
+              Current Train Schedule <i class="material-icons">train</i>
             </div>
 
             <div class="card-body">
@@ -37,18 +38,18 @@
 
                         <tr>
 
-                            <th scope="col" class="font-weight-bold text-center bg-danger text-white">Train Name</th>
-                            <th scope="col" class="font-weight-bold text-center bg-dark text-white">Destination</th>
-                            <th scope="col" class="font-weight-bold text-center bg-info text-white">Frequency (min)</th>
-                            <th scope="col" class="font-weight-bold text-center bg-danger text-white">Next Arrival</th>
-                            <th scope="col" class="font-weight-bold text-center bg-dark text-white">Minutes Away</th>
+                            <th scope="col" class="font-weight-bold text-center">Train Name</th>
+                            <th scope="col" class="font-weight-bold text-center">Destination</th>
+                            <th scope="col" class="font-weight-bold text-center">Frequency (min)</th>
+                            <th scope="col" class="font-weight-bold text-center">Next Arrival</th>
+                            <th scope="col" class="font-weight-bold text-center">Minutes Away</th>
 
                         </tr>
 
                     </thead>
 
                     <tbody>
-                        
+
                         <tr>
 
                             <td class="train-name-display"></td>
@@ -69,7 +70,7 @@
 
         <div class="card" id="add-train-div">
             <div class="card-header" id="add-train-header">
-              Add Train
+              Add Train <i class="material-icons">train</i>
             </div>
 
             <form>
@@ -94,7 +95,7 @@
                     <input type="text" class="form-control" id="frequency-input">
                 </div>
 
-                <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                <button id="submit-btn" type="submit" class="btn btn-primary">Submit</button>
 
               </form>
         </div>
