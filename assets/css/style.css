@@ -3,18 +3,29 @@
     margin-right: 10%;
     margin-bottom: 5%;
     text-align: center;
+    position: relative;
+    
+    
+}
+
+#header-div:before{ /*trying to mess with opacity on BG image */
+   
+    background-image: url(../images/train-background-1.png);
+    opacity: .2;
 }
 
 #table-div {
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 5%;
+    border: aqua solid 2px;
 }
 
 #add-train-div {
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 5%;
+    border: aqua solid 2px;
 }
 
 form {
@@ -28,4 +39,15 @@ form {
 
 #add-train-header {
     margin-bottom: 2%;
+}
+
+label {
+    font-weight: bold;
+}
+
+.card-header {
+    font-size: large;
+    font-weight: bolder;
+    background-color: aqua;
+    
 }
