@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>Train Scheduler</title>
+
+        <!--Styling-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/style.css"></link>
+        <!--Javascript-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> <!--May need to create "library/" dir. in "assets/" dir and download moment.js library into "moment.js.library" file inside "library/" dir. if CDN is problematic. -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="assets/javascript/app.js"></script>
+
+    </head>
+
+    <body>
+    
+        <div class="jumbotron" id="header-div">
+            <h1 class="display-4">Train Scheduler</h1>
+            <p class="lead">Use this page to check and add train schedule's</p>
+        </div>
+
+        <div class="card" id="table-div">
+            <div class="card-header" id="current-train-header">
+              Current Train Schedule
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-sm">
+                    <thead>
+
+                        <tr>
+
+                            <th scope="col" class="font-weight-bold text-center bg-danger text-white">Train Name</th>
+                            <th scope="col" class="font-weight-bold text-center bg-dark text-white">Destination</th>
+                            <th scope="col" class="font-weight-bold text-center bg-info text-white">Frequency (min)</th>
+                            <th scope="col" class="font-weight-bold text-center bg-danger text-white">Next Arrival</th>
+                            <th scope="col" class="font-weight-bold text-center bg-dark text-white">Minutes Away</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        
+                        <tr>
+
+                            <td class="train-name-display"></td>
+                            <td class= "destination-display"></td>
+                            <td class= "frequency-display"></td>
+                            <td class= "next-arrival-display"></td>
+                            <td class= "minutes-away-display"></td>
+                        
+                        </tr>
+                      
+                    </tbody>
+                    
+                  </table>
+
+            </div>
+
+        </div>
+
+        <div class="card" id="add-train-div">
+            <div class="card-header" id="add-train-header">
+              Add Train
+            </div>
+
+            <form>
+
+                <div class="form-group">
+                  <label>Train Name:</label>
+                  <input type="text" class="form-control" id="train-name-input" aria-describedby="emailHelp">
+                </div>
+
+                <div class="form-group">
+                  <label>Destination:</label>
+                  <input type="text" class="form-control" id="destination-input">
+                </div>
+
+                <div class="form-group">
+                    <label>First Train Time (HH:mm - military time)</label>
+                    <input type="text" class="form-control" id="first-train-time-input" aria-describedby="emailHelp">
+                </div>
+
+                <div class="form-group">
+                    <label>Frequency (min):</label>
+                    <input type="text" class="form-control" id="frequency-input">
+                </div>
+
+                <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+
+              </form>
+        </div>
+
+
+
+
+
+
+
+    </body>
+</html>
