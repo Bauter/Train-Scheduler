@@ -50,13 +50,15 @@ label {
     
 }
 
-#submit-btn {
+#submit-btn,
+#update {
     background-color: orange;
     margin-bottom: 2%;
     color: black
 }
 
-#submit-btn:hover {
+#submit-btn:hover,
+#update:hover {
     transform: translateY(-2px);
     transition: transform 150ms;
 }

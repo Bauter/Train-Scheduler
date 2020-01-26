@@ -148,6 +148,10 @@ $(document).ready (function(){
     
   });
 
+  $("#update").on("click", function() {
+    location.reload();
+  })
+
 })
   
   
