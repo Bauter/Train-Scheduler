@@ -132,9 +132,9 @@ $(document).ready (function(){
     tRow = $('<tr>');
     trainNameTd = $('<td>').text(snapshot.val().trainName);
     destinationTd = $('<td>').text(snapshot.val().destination);
-    frequencyTd = $('<td>').text(snapshot.val().frequency);
+    frequencyTd = $('<td>').text(snapshot.val().frequency + " mins");
     nextArrivalTd = $('<td>').text(nextArrival);
-    minutesAwayTd = $('<td>').text(minutesAway);
+    minutesAwayTd = $('<td>').text(minutesAway + " mins");
 
     tRow.append(
       trainNameTd,
