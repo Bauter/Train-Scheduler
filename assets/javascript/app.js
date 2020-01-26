@@ -11,7 +11,7 @@
     appId: "1:952502562757:web:90394e04a14df3452c65ac"
   }; 
  
- firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
   
   //global variables
 
@@ -21,11 +21,11 @@
   let currentTime = moment().format("HH:mm");
   console.log("CURRENT TIME: " + currentTime);
 
-  //let database = [];
   let trainName = "";
   let destination = "";
   let frequency = ""; // use this input to help calculate nextArrival and minutesAway
   let firstTrainTime = ""; // use this input to help calculate nextArrival and minutesAway
+
   // Defining variables used to compute "nextArrival" & "minutesAway" globally so they can be re assigned a new value inside the event listener
   let firstTrainTimeConverted; 
   let differenceInTime;
@@ -63,7 +63,6 @@ $(document).ready (function(){
       dateAdded: firebase.database.ServerValue.TIMESTAMP
     };
 
-   // database.ref().push(newTrain);
     database.ref().push(newTrain);
 
    console.log(newTrain.trainName);
@@ -81,7 +80,7 @@ $(document).ready (function(){
     $("#first-train-time-input").val(""); 
     $("#frequency-input").val("");
 
-    ///appendRow(); //function called via firebase
+    //appendRow(); // using firebase to append table row
   });
 
   //append table row from form input
@@ -121,33 +120,33 @@ $(document).ready (function(){
     }
   );
   
-    
-    database.ref().orderByChild("dateAdded").on("child_added", function(snapshot) {
-      tRow = $('<tr>');
-      trainNameTd = $('<td>').text(snapshot.val().trainName);
-      destinationTd = $('<td>').text(snapshot.val().destination);
-      frequencyTd = $('<td>').text(snapshot.val().frequency);
-      nextArrivalTd = $('<td>').text(snapshot.val().nextArrival);
-      minutesAwayTd = $('<td>').text(snapshot.val().minutesAway);
+  database.ref().orderByChild("dateAdded").on("child_added", function(snapshot) {
+    // re-calculating nextArrival and minutesAway to update on reload
+    firstTrainTimeConverted = moment(snapshot.val().firstTrainTime, "HH:mm").subtract(1, "years")
+    differenceInTime = moment().diff(moment(firstTrainTimeConverted), "minutes");
+    timeRemaining = differenceInTime % snapshot.val().frequency;
+    minutesAway = snapshot.val().frequency - timeRemaining;
+    nextArrival = moment().add(minutesAway, "minutes").format("HH:mm");
 
-      // firstTrainTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years")
-      // differenceInTime = moment().diff(moment(firstTrainTimeConverted), "minutes");
-      // timeRemaining = differenceInTime % frequency;
-      // minutesAway = frequency - timeRemaining;
-      // nextArrival = moment().add(minutesAway, "minutes").format("HH:mm");
+    // creating and appending table row
+    tRow = $('<tr>');
+    trainNameTd = $('<td>').text(snapshot.val().trainName);
+    destinationTd = $('<td>').text(snapshot.val().destination);
+    frequencyTd = $('<td>').text(snapshot.val().frequency);
+    nextArrivalTd = $('<td>').text(nextArrival);
+    minutesAwayTd = $('<td>').text(minutesAway);
 
-      tRow.append(
-        trainNameTd,
-        destinationTd,
-        frequencyTd,
-        nextArrivalTd,
-        minutesAwayTd
-      );
+    tRow.append(
+      trainNameTd,
+      destinationTd,
+      frequencyTd,
+      nextArrivalTd,
+      minutesAwayTd
+    );
     
-      $('tbody').append(tRow);
+    $('tbody').append(tRow);
     
-    
-    });
+  });
 
 })
   
