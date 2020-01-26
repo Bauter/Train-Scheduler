@@ -1,7 +1,7 @@
 
-//firebase link
+//Initialize Firebase
   // Your web app's Firebase configuration
- /* var firebaseConfig = {
+  var firebaseConfig = {
     apiKey: "AIzaSyABne-83rJ0DOe8R2AR_Bm_FAz14hlzkcE",
     authDomain: "train-scheduler-86.firebaseapp.com",
     databaseURL: "https://train-scheduler-86.firebaseio.com",
@@ -9,19 +9,19 @@
     storageBucket: "train-scheduler-86.appspot.com",
     messagingSenderId: "952502562757",
     appId: "1:952502562757:web:90394e04a14df3452c65ac"
-  }; */
-  // Initialize Firebase
- // firebase.initializeApp(firebaseConfig);
+  }; 
+ 
+ firebase.initializeApp(firebaseConfig);
   
   //global variables
 
-  //let database = firebase.database()
+  let database = firebase.database()
 
   //current time via moment.js
   let currentTime = moment().format("HH:mm");
   console.log("CURRENT TIME: " + currentTime);
 
-  let database = [];
+  //let database = [];
   let trainName = "";
   let destination = "";
   let frequency = ""; // use this input to help calculate nextArrival and minutesAway
@@ -57,18 +57,22 @@ $(document).ready (function(){
       destination: destination,
       firstTrainTime: firstTrainTime,
       frequency: frequency,
-     // dateAdded: currentTime
+      timeAdded: currentTime,
+      minutesAway: minutesAway,
+      nextArrival: nextArrival,
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
     };
 
    // database.ref().push(newTrain);
-    database.push(newTrain);
+    database.ref().push(newTrain);
 
-  //  console.log(newTrain.trainName);
-  //  console.log(newTrain.destination);
-  //  console.log(newTrain.firstTrainTime);
-  //  console.log(newTrain.frequency);
-  //  console.log(newTrain.dateAdded);
-   console.log(database);
+   console.log(newTrain.trainName);
+   console.log(newTrain.destination);
+   console.log(newTrain.firstTrainTime);
+   console.log(newTrain.frequency);
+   console.log(newTrain.timeAdded);
+   console.log(newTrain.dateAdded);
+   //console.log(database);
 
     //clears form inputs
 
@@ -77,44 +81,76 @@ $(document).ready (function(){
     $("#first-train-time-input").val(""); 
     $("#frequency-input").val("");
 
-    appendRow();
+    ///appendRow(); //function called via firebase
   });
-})
-  // Use moment.js and variables "frequency" and "firstTrainTime" to calculate variables "nextArrival" and "minutesAway"
 
   //append table row from form input
 
-  var appendRow = function() {
-    var tRow = $('<tr>');
-    var trainNameTd = $('<td>').text(trainName);
-    var destinationTd = $('<td>').text(destination);
-    var frequencyTd = $('<td>').text(frequency);
-    var nextArrivalTd = $('<td>').text(nextArrival);
-    var minutesAwayTd = $('<td>').text(minutesAway);
+  // var appendRow = function() {
+  //   var tRow = $('<tr>');
+  //   var trainNameTd = $('<td>').text(trainName);
+  //   var destinationTd = $('<td>').text(destination);
+  //   var frequencyTd = $('<td>').text(frequency);
+  //   var nextArrivalTd = $('<td>').text(nextArrival);
+  //   var minutesAwayTd = $('<td>').text(minutesAway);
     
   
-    tRow.append(
-      trainNameTd,
-      destinationTd,
-      frequencyTd,
-      nextArrivalTd,
-      minutesAwayTd
-    );
+  //   tRow.append(
+  //     trainNameTd,
+  //     destinationTd,
+  //     frequencyTd,
+  //     nextArrivalTd,
+  //     minutesAwayTd
+  //   );
   
-    $('tbody').append(tRow);
-  };
+  //   $('tbody').append(tRow);
+  // };
 
- /* database.on("child_added", function(snapshot) {
+  database.ref().on("child_added", function(snapshot) {
       console.log(snapshot.val().trainName);
       console.log(snapshot.val().destination);
       console.log(snapshot.val().firstTrainTime);
       console.log(snapshot.val().frequency);
-     // console.log(snapshot.val().dateAdded);
+      console.log(snapshot.val().timeAdded);
+      console.log(snapshot.val().minutesAway);
+      console.log(snapshot.val().nextArrival);
+      console.log(snapshot.val().dateAdded);
       
   },function(errorObject) {
       console.log('Errors handled: ' + errorObject.code);
     }
-  ); */
+  );
+  
+    
+    database.ref().orderByChild("dateAdded").on("child_added", function(snapshot) {
+      tRow = $('<tr>');
+      trainNameTd = $('<td>').text(snapshot.val().trainName);
+      destinationTd = $('<td>').text(snapshot.val().destination);
+      frequencyTd = $('<td>').text(snapshot.val().frequency);
+      nextArrivalTd = $('<td>').text(snapshot.val().nextArrival);
+      minutesAwayTd = $('<td>').text(snapshot.val().minutesAway);
+
+      // firstTrainTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years")
+      // differenceInTime = moment().diff(moment(firstTrainTimeConverted), "minutes");
+      // timeRemaining = differenceInTime % frequency;
+      // minutesAway = frequency - timeRemaining;
+      // nextArrival = moment().add(minutesAway, "minutes").format("HH:mm");
+
+      tRow.append(
+        trainNameTd,
+        destinationTd,
+        frequencyTd,
+        nextArrivalTd,
+        minutesAwayTd
+      );
+    
+      $('tbody').append(tRow);
+    
+    
+    });
+
+})
+  
   
 
 
