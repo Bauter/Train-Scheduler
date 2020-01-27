@@ -145,11 +145,15 @@ $(document).ready (function(){
     minutesAwayTd = $('<td>').text(minutesAway + " mins");
     minutesAwayTd.addClass("minutes-away-display");
 
-    if( minutesAway <= 5) {
+    if ( minutesAway >= 6 && minutesAway <= 20) {
+      $(minutesAwayTd).css("color", "rgb(240, 205, 11)");
+    } else if (minutesAway <= 5) {
       $(minutesAwayTd).css("color", "red");
     } else {
-      $(minutesAwayTd).css("color", "green");
+      $(minutesAwayTd).css("color", "green")
     };
+
+    
 
     tRow.append(
       trainNameTd,
