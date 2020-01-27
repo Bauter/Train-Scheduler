@@ -1,3 +1,19 @@
+
+form {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+label {
+    font-weight: bold;
+}
+
+.card-header {
+    font-size: large;
+    font-weight: bolder;
+    background-color:orange;
+}
+
 #header-div {
     margin-left: 10%;
     margin-right: 10%;
@@ -5,14 +21,6 @@
     text-align: center;
     position: relative;
     background-color:orange;
-    
-    
-}
-
-#header-div:before{ /*trying to mess with opacity on BG image */
-   
-    background-image: url(../images/train-background-1.png);
-    opacity: .2;
 }
 
 #table-div {
@@ -29,26 +37,11 @@
     border:orange solid 2px;
 }
 
-form {
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-
 #add-train-header {
     margin-bottom: 2%;
 }
 
-label {
-    font-weight: bold;
-}
-
-.card-header {
-    font-size: large;
-    font-weight: bolder;
-    background-color:orange;
-    
-}
+/* button styling */
 
 #submit-btn,
 #update {
@@ -62,3 +55,72 @@ label {
     transform: translateY(-2px);
     transition: transform 150ms;
 }
+
+/* table styling */
+
+th {
+    font-size: 20px;
+    text-align: left;
+}
+
+tr {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.train-name-display {
+    font-weight: 500;
+    font-family: 'Changa', sans-serif;
+    font-size: 18px;
+    
+}
+
+.destination-display {
+    font-family: 'Girassol', cursive;
+    font-size: 20px;
+}
+
+.minutes-away-display {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.frequency-display {
+    font-family: 'Orbitron', sans-serif;
+    
+}
+
+.next-arrival-display {
+    font-size: 20px;
+    font-family: 'Changa', sans-serif;
+}
+
+
+
+/* Dialog box */
+
+/* page would not load when linking jqueryUI theme, thinking it may need a npm package install? */
+
+.ui-dialog-titlebar {
+    background-color: orange;
+    padding: 4px 4px 8px 4px;
+} 
+
+.ui-button {
+    align-self: auto;
+    float: right !important;
+}
+
+#dialog {
+    background-color: white;
+    border: 4px solid orange;
+    font-size: 20px;
+}
+
+#dialog.ui-dialog-content.ui-widget-content {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+

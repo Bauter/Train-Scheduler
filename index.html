@@ -12,12 +12,14 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/style.css"></link>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Changa|Girassol|Orbitron&display=swap" rel="stylesheet">
         <!--Firebase database link-->
         <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
         <!--Javascript-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> <!--May need to create "library/" dir. in "assets/" dir and download moment.js library into "moment.js.library" file inside "library/" dir. if CDN is problematic. -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
         <script src="assets/javascript/app.js"></script>
 
     </head>
@@ -35,42 +37,43 @@
             </div>
 
             <div class="card-body">
-
-                <table class="table table-sm">
-                    <thead>
-
-                        <tr>
-
-                            <th scope="col" class="font-weight-bold text-center">Train Name</th>
-                            <th scope="col" class="font-weight-bold text-center">Destination</th>
-                            <th scope="col" class="font-weight-bold text-center">Frequency (min)</th>
-                            <th scope="col" class="font-weight-bold text-center">Next Arrival</th>
-                            <th scope="col" class="font-weight-bold text-center">Minutes Away</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-
-                            <td class="train-name-display"></td>
-                            <td class= "destination-display"></td>
-                            <td class= "frequency-display"></td>
-                            <td class= "next-arrival-display"></td>
-                            <td class= "minutes-away-display"></td>
+                <div class="table-responsive">
+                    <table class="table table-sm">
                         
-                        </tr>
-                      
-                    </tbody>
-                    
-                  </table>
-                  
-                  <button id="update" class="btn btn-primary">UPDATE</button>
-                  
-            </div>
+                        <thead>
 
+                            <tr>
+
+                                <th scope="col" class="font-weight-bold">Train Name</th>
+                                <th scope="col" class="font-weight-bold">Destination</th>
+                                <th scope="col" class="font-weight-bold">Frequency (min)</th>
+                                <th scope="col" class="font-weight-bold">Next Arrival</th>
+                                <th scope="col" class="font-weight-bold">Minutes Away</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td class="train-name-display"></td>
+                                <td class= "destination-display"></td>
+                                <td class= "frequency-display"></td>
+                                <td class= "next-arrival-display"></td>
+                                <td class= "minutes-away-display"></td>
+                        
+                            </tr>
+                      
+                        </tbody>
+                    
+                    </table>
+
+                    <button id="update" class="btn btn-primary">UPDATE</button>
+
+                </div>
+            </div>
         </div>
 
         <div class="card" id="add-train-div">
@@ -104,6 +107,8 @@
 
               </form>
         </div>
+
+        <div id="dialog" tittle="Train Added"><span id="dialogBox-text">This train has been successfully added</span></div>
 
 
 

@@ -36,6 +36,7 @@
   // form submit-btn event listener
 $(document).ready (function(){
 
+  $( "#dialog" ).dialog({ autoOpen: false });
 
   $("#submit-btn").on("click", function (event) {
     event.preventDefault();
@@ -46,11 +47,11 @@ $(document).ready (function(){
     frequency = $("#frequency-input").val().trim();
 
     //variables "nextArrival" & "minutesAway" computed using moment.js
-    firstTrainTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years")
-    differenceInTime = moment().diff(moment(firstTrainTimeConverted), "minutes");
-    timeRemaining = differenceInTime % frequency;
-    minutesAway = frequency - timeRemaining;
-    nextArrival = moment().add(minutesAway, "minutes").format("HH:mm");
+    // firstTrainTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years")
+    // differenceInTime = moment().diff(moment(firstTrainTimeConverted), "minutes");
+    // timeRemaining = differenceInTime % frequency;
+    // minutesAway = frequency - timeRemaining;
+    // nextArrival = moment().add(minutesAway, "minutes").format("HH:mm");
 
     let newTrain = {
       trainName: trainName,
@@ -58,20 +59,24 @@ $(document).ready (function(){
       firstTrainTime: firstTrainTime,
       frequency: frequency,
       timeAdded: currentTime,
-      minutesAway: minutesAway,
-      nextArrival: nextArrival,
+      // minutesAway: minutesAway,
+      // nextArrival: nextArrival,
       dateAdded: firebase.database.ServerValue.TIMESTAMP
     };
 
     database.ref().push(newTrain);
 
-   console.log(newTrain.trainName);
-   console.log(newTrain.destination);
-   console.log(newTrain.firstTrainTime);
-   console.log(newTrain.frequency);
-   console.log(newTrain.timeAdded);
-   console.log(newTrain.dateAdded);
-   //console.log(database);
+    console.log(newTrain.trainName);
+    console.log(newTrain.destination);
+    console.log(newTrain.firstTrainTime);
+    console.log(newTrain.frequency);
+    console.log(newTrain.timeAdded);
+    console.log(newTrain.dateAdded);
+    //console.log(database);
+
+    //open dialog box confirming train added
+
+    $( "#dialog" ).dialog( "open" );
 
     //clears form inputs
 
@@ -111,8 +116,6 @@ $(document).ready (function(){
       console.log(snapshot.val().firstTrainTime);
       console.log(snapshot.val().frequency);
       console.log(snapshot.val().timeAdded);
-      console.log(snapshot.val().minutesAway);
-      console.log(snapshot.val().nextArrival);
       console.log(snapshot.val().dateAdded);
       
   },function(errorObject) {
@@ -128,13 +131,25 @@ $(document).ready (function(){
     minutesAway = snapshot.val().frequency - timeRemaining;
     nextArrival = moment().add(minutesAway, "minutes").format("HH:mm");
 
+
     // creating and appending table row
     tRow = $('<tr>');
     trainNameTd = $('<td>').text(snapshot.val().trainName);
+    trainNameTd.addClass("train-name-display");
     destinationTd = $('<td>').text(snapshot.val().destination);
+    destinationTd.addClass("destination-display");
     frequencyTd = $('<td>').text(snapshot.val().frequency + " mins");
+    frequencyTd.addClass("frequency-display")
     nextArrivalTd = $('<td>').text(nextArrival);
+    nextArrivalTd.addClass("next-arrival-display");
     minutesAwayTd = $('<td>').text(minutesAway + " mins");
+    minutesAwayTd.addClass("minutes-away-display");
+
+    if( minutesAway <= 5) {
+      $(minutesAwayTd).css("color", "red");
+    } else {
+      $(minutesAwayTd).css("color", "green");
+    };
 
     tRow.append(
       trainNameTd,
