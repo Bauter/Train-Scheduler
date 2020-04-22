@@ -6,6 +6,12 @@
 
 -New train schedules can be added into the database and in return to the data table.
 
+## Link to application
+
+https://bauter.github.io/Train-Scheduler/
+
+![train-app](train.gif)
+
 ## How was this project created?
 
 -Coding was done using Visual Studio Code ("https://code.visualstudio.com/") a text editor can be downloaded from their website.
